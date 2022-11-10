@@ -23,16 +23,29 @@ def send_changes_Marketplace(name, info, code):
         configuration[name]["MARKETPLACES_PARAMS"]["UPDATE"]["price"]:info[configuration[marketplace]["MARKETPLACES_PARAMS"]["GET_INFO"]["price"]],
         configuration[name]["MARKETPLACES_PARAMS"]["UPDATE"]["qtd"]:info[configuration[marketplace]["MARKETPLACES_PARAMS"]["GET_INFO"]["qtd"]]
     }
-    requests.post(url_, data=data_)
 
+    requests.post(url_, data=data_)
+    print(f"UPDATE {code} at {name}")
 
 def marketplace_monitor(name):
     
+    print(f"---- Monitor at {name} ----")
+
     url_ = configuration[name]["MARKETPLACES_URLS"]["GET_INFO"]
-    old_info = json.loads(get_changes(url_).text)
+    
+    old_info = None
+    new_info = None
+
+    try:
+        old_info = json.loads(get_changes(url_).text)
+        print(name, "GET Changes")
+    except:
+        print(name, "GET Error")
 
     while(True):
         
+        print(f"---- Monitor at {name} ----")
+
         global FLAG
 
         if FLAG == 1:
@@ -40,10 +53,14 @@ def marketplace_monitor(name):
 
         time.sleep(1)
 
-        new_info = json.loads(get_changes(url_).text)
+        try:
+            new_info = json.loads(get_changes(url_).text)
+            print(name, "GET Changes")
+        except:
+            print(name, "GET Error")
 
         if old_info != new_info:
-
+            print("Change detected")
             with open("list.json","r+") as file_:
                 FLAG = 1
 
@@ -59,7 +76,7 @@ def marketplace_monitor(name):
             old_info = new_info   
 
         else:
-            pass
+            print(name, "Nothing changed")
 
 def create_threads():
 
@@ -70,7 +87,10 @@ def create_threads():
 def send_data(info, code):
 
     for shop in configuration:
-        send_changes_Marketplace(shop, info, code)
+        try:
+            send_changes_Marketplace(shop, info, code)
+        except:
+            print(shop, f"UPDATE at {code} not done")
 
 if __name__ == "__main__":
     
@@ -81,7 +101,11 @@ if __name__ == "__main__":
         with open("list.json","w") as file_:
             file_.write("{}")
 
-        create_threads()
+        try:
+            create_threads()
+
+        except:
+            print("Thread Error")
 
         while(threading.active_count() != 1):
             pass
@@ -89,9 +113,14 @@ if __name__ == "__main__":
         with open("list.json","r") as file_:
 
             info = json.loads(file_.read())
+
             for code in info:
-                thread_ = threading.Thread(target=send_data,args=(info[code], code,))
-                thread_.start()
+                try:
+                    thread_ = threading.Thread(target=send_data,args=(info[code], code,))
+                    thread_.start()
+
+                except:
+                    print("Thread Error")
                 
         while(threading.active_count() != 1):
             pass
