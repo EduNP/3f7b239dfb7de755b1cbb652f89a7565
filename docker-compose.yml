@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  ERP:
+    build: ./ERP
+    ports:
+      - 6000:6000
+    image: erp-api-image
+    volumes:
+      - type: bind
+        source: ./ERP/Data
+        target: /app
+  store-frontend:
+    build:
+      context: ./Store/Frontend
+      target: production
+    ports:
+      - 80:3000
+    image: front-image
+  store-backend:
+    build:
+      context: ./Store/Backend
+    ports:
+      - 8000:5000
+    image: back-image
+    volumes:
+      - type: bind
+        source: ./Store/Backend/Data
+        target: /app

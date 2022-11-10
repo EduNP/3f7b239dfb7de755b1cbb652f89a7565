@@ -1,4 +1,3 @@
-from requests import request
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -16,15 +15,22 @@ def add():
     except:
         data = {}
         #branco, arquivo criado ao fim do método
-
+    print(request.form)
     #Recebe as informações via POST e converte para json
     prodcode = request.form.get('code', default = '0', type = int)
     if int(prodcode) <= 0:
         return responseFunc("Error")
 
     name = request.form.get('name', default = '', type = str)
-    price  = request.form.get('price', default = '', type = float)
+    if name == '':
+        name = data[f"{prodcode}"]['prodName']
+
+    price  = request.form.get('price', default = -1, type = float)
+    if price == -1:
+        price = data[f"{prodcode}"]['prodPrice']
+
     qtd = request.form.get('qtd', default = '', type = int)
+
     data[f"{prodcode}"] = {'prodName' : name, 'prodPrice': price, 'prodQtd': qtd}
 
     with open("loja.json", "w+") as file:
