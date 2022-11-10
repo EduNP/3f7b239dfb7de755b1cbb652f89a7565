@@ -1,0 +1,53 @@
+
+{
+
+    "Loja_1": {
+
+        "MARKETPLACES_PARAMS": {
+
+            "GET_INFO":{
+                "code":"code",
+                "name":"prodName",
+                "price":"prodPrice",
+                "qtd":"prodQtd"
+            },
+
+            "UPDATE":{
+                "code":"code",
+                "name":"name",
+                "price":"price",
+                "qtd":"qtd"
+            }
+        },
+
+        "MARKETPLACES_URLS": {
+            "GET_INFO": "http://127.0.0.1:5000",
+            "UPDATE": "http://127.0.0.1:5000/update"
+        }
+    },
+
+    "Loja_2": {
+
+        "MARKETPLACES_PARAMS": {
+
+            "GET_INFO":{
+                "code":"code",
+                "name":"prodName",
+                "price":"prodPrice",
+                "qtd":"prodQtd"
+            },
+
+            "UPDATE":{
+                "code":"code",
+                "name":"name",
+                "price":"price",
+                "qtd":"qtd"
+            }
+        },
+
+        "MARKETPLACES_URLS": {
+            "GET_INFO": "http://192.168.0.145:5000",
+            "UPDATE": "http://192.168.0.145:5000/update"
+        }
+    }
+}
