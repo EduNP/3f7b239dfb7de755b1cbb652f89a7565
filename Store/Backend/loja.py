@@ -19,7 +19,7 @@ def add():
 
     #Recebe as informações via POST e converte para json
     prodcode = request.form.get('code', default = '0', type = int)
-    if prodcode <= 0:
+    if int(prodcode) <= 0:
         return responseFunc("Error")
 
     name = request.form.get('name', default = '', type = str)
@@ -66,7 +66,6 @@ def getInfo():
             data = json.load(file)
     except:
         return responseFunc("Error")
-        #branco, arquivo criado ao fim do método
 
     #Recebe as informações via POST e converte para json
     prodcode = request.form.get('code', default = '0', type = int)
