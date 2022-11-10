@@ -31,9 +31,13 @@ Com o objetivo de permitir a expansão da empresa de Miguel, o SGV permitirá qu
 Para tal, basta que o Miguel cadastre seus produtos.
 
 ## Construído com
-
-[Flask](https://flask.palletsprojects.com/) - Biblioteca para construção de APIs
-
+Bibliotecas python:
+  [Flask](https://flask.palletsprojects.com/) - Biblioteca para construção de APIs
+  [time] - Controlar intervalo de tempo entre requisições.
+  [threading] - Gerar threads de monitores e updates
+  [json] - Manipular arquivos json
+  [os] - Recursos do sistema operacional
+  
 [PlantText](https://www.planttext.com/) - Editor UML
 
 [Google Docs](https://docs.google.com/?hl=pt-BR) - Editor de Texto para a [documentação formal do projeto](https://docs.google.com/document/d/1_n_Y9VzPirSi8xGHPFUpLFhRByi0lGL5/edit?usp=sharing&ouid=106651746525604779290&rtpof=true&sd=true)
