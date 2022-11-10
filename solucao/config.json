@@ -21,8 +21,8 @@
         },
 
         "MARKETPLACES_URLS": {
-            "GET_INFO": "http://127.0.0.1:5000",
-            "UPDATE": "http://127.0.0.1:5000/update"
+            "GET_INFO": "http://127.0.0.1:8000",
+            "UPDATE": "http://127.0.0.1:8000/update"
         }
     },
 
@@ -46,8 +46,33 @@
         },
 
         "MARKETPLACES_URLS": {
-            "GET_INFO": "http://192.168.0.145:5000",
-            "UPDATE": "http://192.168.0.145:5000/update"
+            "GET_INFO": "http://127.0.0.1:9000",
+            "UPDATE": "http://127.0.0.1:9000/update"
+        }
+    }, 
+
+    "ERP": {
+
+        "MARKETPLACES_PARAMS": {
+
+            "GET_INFO":{
+                "code":"code",
+                "name":"name",
+                "price":"price",
+                "qtd":"qtd"
+            },
+
+            "UPDATE":{
+                "code":"code",
+                "name":"name",
+                "price":"price",
+                "qtd":"qtd"
+            }
+        },
+
+        "MARKETPLACES_URLS": {
+            "GET_INFO": "http://127.0.0.1:9000",
+            "UPDATE": "http://127.0.0.1:9000/update"
         }
     }
 }

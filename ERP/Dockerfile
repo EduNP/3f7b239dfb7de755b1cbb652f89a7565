@@ -1,11 +1,11 @@
 FROM python:3
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ERP.py .
+COPY . .
 EXPOSE 6000
-CMD [ "python", "ERP.py" ]
+CMD [ "python", "./ERP.py" ]

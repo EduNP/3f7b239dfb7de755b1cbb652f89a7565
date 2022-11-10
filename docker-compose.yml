@@ -26,3 +26,13 @@ services:
       - type: bind
         source: ./Store/Backend/Data
         target: /app
+  store2-backend:
+    build:
+      context: ./Store/Backend
+    ports:
+      - 9000:5000
+    image: back-image
+    volumes:
+      - type: bind
+        source: ./Store/Backend/Data
+        target: /app
